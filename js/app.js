@@ -255,28 +255,6 @@ const editar = () => {
 
   const reset = () => {
     
-    localStorage.removeItem("gastos");
-    gastoslocal = [];
-    tpresupuesto = 0;
-  
-    
-    totalpresupuesto.innerHTML = `$ 0.00`;
-    totalGastos.innerHTML = `: $0.00`;
-    disponible.innerHTML = `: $0.00`;
-    listasgastos.innerHTML = '';
-  
-
-    presupuesto.value = '0';
-  
-   
-    divPresupuesto.classList.remove("d-none");
-    divGastos.classList.remove("d-block");
-    divPresupuesto.classList.add("d-block");
-    divGastos.classList.add("d-none");
-  
-   
-    $('#Editar').modal('hide');
-    $('#nuevoGasto').modal('hide');
   
    
     /*toastr.success('¡Sigue siendo lo más fácil del mundo!', '¡Reiniciado!', {
@@ -288,11 +266,53 @@ const editar = () => {
   
     
     Swal.fire({
-      icon: 'success',
-      title: '¡Reiniciado!',
-      text: 'Los datos han sido eliminados y puedes ingresar un nuevo presupuesto.',
-    });
+      title: '¿Estás seguro de reiniciar?',
+      text: "'Los datos seran  eliminados '",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#a0db8e',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+    
+        localStorage.removeItem("gastos");
+        gastoslocal = [];
+        tpresupuesto = 0;
+      
+        
+        totalpresupuesto.innerHTML = `$ 0.00`;
+        totalGastos.innerHTML = `: $0.00`;
+        disponible.innerHTML = `: $0.00`;
+        listasgastos.innerHTML = '';
+      
+    
+        presupuesto.value = '0';
+      
+       
+        divPresupuesto.classList.remove("d-none");
+        divGastos.classList.remove("d-block");
+        divPresupuesto.classList.add("d-block");
+        divGastos.classList.add("d-none");
+      
+       
+        $('#Editar').modal('hide');
+        $('#nuevoGasto').modal('hide');
+        
+        Swal.fire({
+          icon: 'success',
+          title: '¡Reiniciado!',
+          text: 'Los datos han sido eliminados y puedes ingresar un nuevo presupuesto.',
+        });
+      }    
+    
+
+      
+      });
   }
+
+      
   
 
   
